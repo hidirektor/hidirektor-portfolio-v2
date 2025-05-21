@@ -2,6 +2,39 @@
 (function ($) {
   "use strict";
 
+  function initializeSwiper() {
+    // Only initialize if Swiper is defined and the slider element exists
+    if (typeof Swiper !== 'undefined' && $('.portfolio-swiper').length) {
+      // Destroy existing Swiper instance if it exists on the element
+      // This is crucial for dynamically loaded content to prevent multiple initializations
+      if ($('.portfolio-swiper')[0].swiper) {
+        $('.portfolio-swiper')[0].swiper.destroy(true, true);
+      }
+
+      new Swiper('.portfolio-swiper', {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 30,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        effect: 'fade',
+        fadeEffect: {
+          crossFade: true,
+        },
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+      });
+    }
+  }
+
   $(window).on('load', function () {
 
     /* 01. PreLoader Init
@@ -156,11 +189,14 @@
         setTimeout(function(){
           $('.load-popup-content .popup-content-inner').load(portfolioURL+' .load-data > *', function() {
             $('.popup-loader').fadeOut(200);
+
+            initializeSwiper();
           });
           setTimeout(function(){
             $('.load-popup-content').css('overflow-y','scroll');
           }, 300);
         }, 300);
+
         return false;
       });
       // portfolioPopupClose Init
