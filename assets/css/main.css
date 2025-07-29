@@ -733,6 +733,13 @@ header .user-image {
 	margin-top: 30px;
 }
 
+.clients-carousel .owl-item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100px;
+}
+
 .clients-carousel img {
 	border: 1px solid #090909;
     transition: .3s;
@@ -740,6 +747,9 @@ header .user-image {
     -moz-transition: .3s;
     -ms-transition: .3s;
     -o-transition: .3s;
+    max-height: 80px;
+    max-width: 100%;
+    object-fit: contain;
 }
 
 .clients-carousel img:hover {
