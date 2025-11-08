@@ -1,0 +1,38 @@
+# cPanel Apache Configuration
+# Allow access to image files
+<FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico)$">
+    Require all granted
+</FilesMatch>
+
+# Enable directory indexing (disabled for security)
+Options -Indexes +FollowSymLinks
+
+# Set proper MIME types
+AddType image/jpeg .jpg .jpeg
+AddType image/png .png
+AddType image/gif .gif
+AddType image/webp .webp
+AddType image/svg+xml .svg
+
+# Allow access to CSS and JS files
+<FilesMatch "\.(css|js)$">
+    Require all granted
+</FilesMatch>
+
+# Allow access to font files
+<FilesMatch "\.(ttf|otf|eot|woff|woff2)$">
+    Require all granted
+</FilesMatch>
+
+# Prevent access to sensitive files
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Enable CORS for images (if needed)
+<IfModule mod_headers.c>
+    <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico)$">
+        Header set Access-Control-Allow-Origin "*"
+    </FilesMatch>
+</IfModule>
+

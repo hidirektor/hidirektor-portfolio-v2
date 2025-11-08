@@ -1,0 +1,13 @@
+# cPanel - Allow direct access to images in this directory
+Require all granted
+
+# Set proper MIME types for images
+<FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico)$">
+    Require all granted
+</FilesMatch>
+
+# Enable CORS if needed (optional)
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>
+
